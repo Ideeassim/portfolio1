@@ -3752,6 +3752,7 @@ td:last-child {
         text-align : center;
         max-width  : 70vw;
         margin     : 0 auto;
+         color: #a5a7a5;
     }
 
     .s-intro__content-title {
@@ -3850,6 +3851,7 @@ td:last-child {
 @media screen and (max-width: 600px) {
     .s-intro__content-text {
         max-width: 80vw;
+        color: #a5a7a5;
     }
 
     .s-intro__social {
