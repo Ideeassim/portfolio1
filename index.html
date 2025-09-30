@@ -25,6 +25,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
 
+    <!-- Roboto font (MUI uses it by default) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+
+<!-- Material Icons (optional, for icons) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+<!-- MUI (UMD build) -->
+<script src="https://unpkg.com/@mui/material@latest/umd/material-ui.development.js"></script>
 </head>
 
 
@@ -86,8 +94,8 @@
 
                         <!-- <div class="s-intro__content-pretitle text-pretitle">Hello</div> -->
                         <div>
-                            <h1>Hello,</h1>
-                        <h4 style="margin-top: 5px;" >
+                            <h1  style="color: #C9B194; text-shadow: 2px 2px 2px rgba(0,0,0,1) ">Hello,</h1>
+                        <h4 style="margin-top: 5px; color: #C9B194; text-shadow: 2px 2px 2px rgba(0,0,0,1) " >
                        I'm <span style="color: brown;">Idongesit Assim. </span><br>
                       A Frontend Developer passionate about design, performance, and usability.
                         </h4>   </div>                         
@@ -266,7 +274,8 @@
                     </div> <!-- end section-header -->
                 </div>
             </div>
-
+                    <!-- React will mount here -->
+  <div id="root"></div>
             <!-- <div class="row folio-entries" > -->
 <!-- 
                 <div class="column entry" >
@@ -587,6 +596,109 @@
     ================================================== -->
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+
+  
+
+  <!-- Add React and Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- MUI (added above) -->
+  <script src="https://unpkg.com/@mui/material@latest/umd/material-ui.development.js"></script>
+  <!-- Emotion (needed for styling in MUI v5) -->
+<script src="https://unpkg.com/@emotion/react@11.11.1/dist/emotion-react.umd.min.js"></script>
+
+<script src="https://unpkg.com/@mui/material@5.15.14/umd/material-ui.development.js"></script>
+
+
+
+  <!-- Write React code -->
+  <script type="text/babel">
+    const {
+      Button,
+      Grid,
+      Container,
+      Typography,
+      Paper
+    } = window['MaterialUI'];
+
+    //child component
+  function Projects({ title, descr, link, img }) {
+    return (
+      <Paper style={{ padding: "1rem", margin: "1rem 0", height:'33rem', display:'flex', flexDirection:'column', alignItems:'center', gap:'10px'}} elevation={3}>
+        <h7 style={{color:'#57564F', fontFamily:'Open Sans'}}>{title}</h7>
+        <Paper style={{ width: "200px", height: "150px", borderRadius:'10px'}} elevation={4}>
+            <img src={img} alt={title} style={{ width: "100%", height: "100%", objectFit: "cover",borderRadius:'10px' }}/>
+        </Paper>
+        <Typography variant="body1" style={{
+    marginTop: "0.5rem",
+    
+  }}>{descr}</Typography>
+        <Typography variant="body2" style={{ marginTop: "0.5rem" }}>
+          <a href={link} target="_blank" rel="noopener noreferrer">Project Link</a>
+        </Typography>
+      </Paper>
+    );
+  }
+
+    const projectsData = [
+    {
+      title: "Gas Sync App",
+      descr: "A full-stack web app built with React, Node.js, Express, and MongoDB.It allows users to generate invoices, store receipts, and track expenses.  for gas products.  Deployed with Netlify (frontend) and Render (backend).",
+      link: "https://gasync.netlify.app/",
+      img: "images/g1.png"
+    },
+    {
+      title: "Dictionary",
+      descr: "A sleek React application that lets users search for English word definitions, listen to pronunciations, and switch between light and dark modes. Built with React, Axios, and Tailwind CSS, it fetches real-time data from the Free Dictionary API and is fully responsive across devices.",
+      link: "https://english-dictionary-app1.netlify.app/",
+      img: "images/dictionary.png"
+    },
+    {
+      title: "Podcast",
+      descr: "A modern, responsive landing page built with React and Vite, designed to showcase podcast episodes with a clean layout and engaging UI. Optimized for both desktop and mobile, with smooth navigation and a focus on accessibility and performance.",
+      link: "https://ideeassim.github.io/Responsive-Podcast-Page/",
+      img: "images/pod.png"
+    },
+    {
+      title: "Interactive-Rating-Components",
+      descr: "A responsive React component that allows users to select and submit ratings with instant feedback. Built with React and styled with CSS, it demonstrates dynamic state management, user interaction handling, and reusable UI design.",
+      link: "https://ideeassim.github.io/Interactive-Rating-Components/",
+      img: "images/interactive.png"
+    },
+    {
+      title: "FAQ Accordion",
+      descr: "A simple FAQ section built with Vue that allows users to expand and collapse answers for a cleaner browsing experience. While not yet responsive, it demonstrates interactive UI behavior, state management, and clean component structure.",
+      link: "https://ideeassim.github.io/Faq-Accordion-with-Vue.js/",
+      img: "images/faq.png"
+    },
+    {
+      title: "Bento Grid",
+      descr: "A responsive grid-based layout built with React and CSS Grid/Tailwind to experiment with modern layout techniques. The design mimics the popular “bento box” style, showcasing how grid systems can create visually appealing and adaptive interfaces across devices.",
+      link: "https://ideeassim.github.io/New-bento-grid/",
+      img: "images/grid.png"
+    }
+  ];
+
+  function App() {
+    return (
+        <Grid container spacing={2} padding={2}>
+        {projectsData.map((project, index) => ( <Grid item xs={12} sm={6} md={4} key={index}>
+          <Projects
+            key={index}
+            title={project.title}
+            descr={project.descr}
+            link={project.link}
+            img={project.img}
+          /></ Grid>))}
+          </Grid>
+      )};
+    
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
 
 </body>
 </html>
