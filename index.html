@@ -94,7 +94,7 @@
 
                         <!-- <div class="s-intro__content-pretitle text-pretitle">Hello</div> -->
                         <div>
-                            <h1  style="color: #C9B194; text-shadow: 2px 2px 2px rgba(0,0,0,1) ">Hello,</h1>
+                            <h1  style="color: #C9B194; text-shadow: 2px 2px 2px rgba(0,0,0,0.6) ">Hello,</h1>
                         <h4 style="margin-top: 5px; color: #C9B194; text-shadow: 2px 2px 2px rgba(0,0,0,1) " >
                        I'm <span style="color: brown;">Idongesit Assim. </span><br>
                       A Frontend Developer passionate about design, performance, and usability.
@@ -629,7 +629,8 @@
       <Paper style={{ padding:'0.5rem', margin: "1rem 0", height:'50rem', display:'flex', flexDirection:'column', alignItems:'center', gap:'5px'}} elevation={3}>
         <h6 style={{color:'#57564F', fontFamily:'Open Sans'}}>{title}</h6>
         <Paper style={{ width: "440px", height: "240px", borderRadius:'10px'}} elevation={4}>
-            <img src={img} alt={title} style={{ width: "100%", height: "100%", objectFit: "cover",borderRadius:'10px' }}/>
+            <img src={img} srcSet={`${img.replace(".png", "@1x.png")} 1x, ${img.replace(".png", "@2x.png")} 2x`}
+            alt={title} style={{ width: "100%", height: "100%", objectFit: "cover",borderRadius:'10px' }}/>
         </Paper>
         <p style={{
     marginTop: "0.5rem",
